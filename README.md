@@ -104,7 +104,7 @@ Cara web:
 
 1. Buka [vercel.com/new](https://vercel.com/new), import repository GitHub.
 2. Framework Preset: **Other**.
-3. Build Command: kosongkan. Output Directory: `.` (root).
+3. Build Command: kosongkan. Output Directory: kosongkan/root (`.`).
 4. **Deploy**.
 
 Atau via CLI:
