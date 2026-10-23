@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>My English Journey — Dashboard Belajar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="boot-screen" class="boot-screen"><div class="boot-card"><div class="boot-spinner" aria-hidden="true"></div><p id="boot-text">Memuat… jika lama, periksa koneksi internet.</p></div></div>
+<div id="auth-view" class="auth-view" hidden>
+  <form id="login-form" class="auth-card">
+    <h2>Masuk ke My English Journey</h2>
+    <label for="login-email">Email</label>
+    <input id="login-email" type="email" required autocomplete="username">
+    <label for="login-password">Kata sandi</label>
+    <input id="login-password" type="password" required autocomplete="current-password">
+    <p id="login-error" class="auth-error" role="alert"></p>
+    <button id="login-submit" class="button" type="submit">Masuk</button>
+  </form>
+</div>
+<div id="app-view" hidden>
+<div id="data-error" class="banner-error" hidden><p id="error-message"></p><button id="retry-btn" class="button ghost">Coba lagi</button></div>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><span class="brand-icon">📘</span><div><strong>My English Journey</strong><small>Better English, Bigger Dreams</small></div></div>
+  <nav class="nav" aria-label="Navigasi utama">
+    <button class="active" data-page="home"><span class="ico">⌂</span>Beranda</button>
+    <button data-page="materials"><span class="ico">▤</span>Materi Belajar</button>
+    <button data-page="schedule"><span class="ico">▦</span>Jadwal Harian</button>
+    <button data-page="progress"><span class="ico">◴</span>Progress</button>
+    <button data-page="tests"><span class="ico">☷</span>Tes & Evaluasi</button>
+    <button data-page="dictionary"><span class="ico">▣</span>Kamus Pribadi</button>
+    <button data-page="notes"><span class="ico">✎</span>Catatan</button>
+  </nav>
+  <div class="side-note"><span class="mountain">♧</span><strong>Small steps every day,</strong><br>big results in the future.<br><br><em>You can do it! ✨</em></div>
+</aside>
+<main>
+  <div class="topbar"><div><h1>Halo, Julian! 👋</h1><p>Terus belajar, kamu sedang membangun kemampuan sedikit demi sedikit.</p></div><div class="topbar-actions"><div class="profile">🎯 Target: Fasih berbahasa Inggris</div><button id="logout-btn" class="button ghost">Keluar</button></div></div>
+  <section id="page-home" class="page active">
+    <div class="layout">
+      <div class="left">
+        <section class="hero"><div class="eyebrow">Tujuan akhir</div><h2>Fasih Berbahasa Inggris</h2><p>Bukan hanya tahu, tetapi bisa menggunakannya dalam kehidupan nyata — kuliah, karier, dan impianmu.</p><div class="chips"><span class="chip">🎓 Kuliah & Karier</span><span class="chip">✈️ WHV Australia</span><span class="chip">🌏 Travel</span><span class="chip">🌱 Better You</span></div></section>
+        <section class="card"><div class="section-head"><div><h3>Tahapan Belajar</h3><p>6 tahap utama menuju kemampuan bahasa Inggris yang fasih.</p></div><button class="link-btn" data-goto="progress">Lihat progress →</button></div><div class="stages" id="stage-cards"></div></section>
+        <section class="card focus"><div class="section-head"><div><span class="eyebrow">Fokus saat ini</span></div><span id="stage-badge" class="chip">Tahap 1</span></div><div class="focus-top"><div class="focus-icon">📘</div><div><h3 id="focus-title">Fondasi Kalimat</h3><p id="focus-desc">Memahami cara bahasa Inggris membentuk kalimat.</p></div><button class="button" id="focus-btn">Lanjut Belajar →</button></div><div class="focus-progress"><div class="bar"><span id="focus-bar"></span></div><strong id="focus-pct">0%</strong></div><div class="check-layout"><div class="checklist"><h4>Checklist penguasaan tahap</h4><div id="focus-checklist"></div></div><div class="locked"><h4>🔒 Tahap berikutnya</h4><div id="next-stage-title">Grammar yang Tepat</div><p>Selesaikan checklist tahap ini dan ikuti evaluasi singkat sebelum berpindah ke tahap berikutnya.</p><button class="button secondary" data-goto="tests">Tes kemampuan →</button></div></div></section>
+        <section class="card"><div class="section-head"><div><h3>Materi Belajar</h3><p>Pilih materi singkat untuk latihan hari ini.</p></div><button class="link-btn" data-goto="materials">Lihat semua →</button></div><div class="lesson-grid" id="home-lessons"></div></section>
+        <section class="card"><div class="section-head"><div><h3>Rencana Mingguan</h3><p>Checklist mingguan dapat kamu ubah sesuai jadwal.</p></div></div><div class="week" id="week-grid"></div></section>
+      </div>
+      <div class="right">
+        <section class="card wide"><div class="section-head"><div><h3>Progress Keseluruhan</h3><p>Persentase berdasarkan materi yang kamu tandai selesai.</p></div></div><div class="overall"><div class="ring" id="overall-ring"><div class="ring-inner"><strong id="overall-pct">0%</strong><small>selesai</small></div></div><div class="skill-bars" id="skill-bars"></div></div><div class="stat"><div class="stat-label">🎯 Fokus berikutnya</div><div id="next-focus">Mulai dari fondasi kalimat</div><small>Progres dihitung otomatis dari checklist-mu.</small></div></section>
+        <section class="card"><div class="streak-head"><span class="flame">🔥</span><div><h3>Streak Belajar</h3><p>Konsisten lebih penting daripada sempurna.</p></div></div><div class="streak-count"><span id="streak-count">0</span> hari</div><small id="streak-caption">Tandai belajar hari ini untuk mulai membangun streak.</small><div class="weekdots" id="streak-days"></div><button class="button secondary" id="mark-today">✓ Tandai belajar hari ini</button></section>
+        <section class="card"><div class="section-head"><div><h3>Jadwal Belajar Hari Ini</h3><p id="today-date"></p></div></div><div class="schedule"><div class="schedule-row"><span class="time">15 mnt</span><div><strong>Materi inti</strong><small>Pelajari satu konsep</small></div></div><div class="schedule-row"><span class="time">10 mnt</span><div><strong>Latihan soal</strong><small>Gunakan materi dalam kalimat</small></div></div><div class="schedule-row"><span class="time">10 mnt</span><div><strong>Listening / Shadowing</strong><small>Dengarkan dan tirukan</small></div></div><div class="schedule-row"><span class="time">10 mnt</span><div><strong>Speaking / Writing</strong><small>Produksi bahasa secara aktif</small></div></div></div><button class="button ghost btn-block" data-goto="schedule">Lihat jadwal lengkap</button></section>
+        <section class="card"><div class="section-head"><h3>Catatan & Motivasi</h3></div><div class="quote">“Kamu tidak perlu sempurna. Kamu hanya perlu terus maju. Sedikit lebih baik dari kemarin sudah berarti.”<div class="quote-by">— My English Journey</div></div></section>
+      </div>
+    </div>
+  </section>
+  <section id="page-materials" class="page"><div class="fullpage"><section class="card"><div class="section-head"><div><h3>Materi Belajar</h3><p>Pilih materi, pelajari, lalu tandai jika sudah dikuasai.</p></div></div><div id="all-lessons"></div></section><section class="card"><h3>Enam tahap perjalananmu</h3><p class="muted-note">Selesaikan materi bertahap. Tidak perlu terburu-buru mengejar angka.</p><div id="stage-detail-list"></div></section></div></section>
+  <section id="page-schedule" class="page"><div class="fullpage"><section class="card"><div class="section-head"><div><h3>Jadwal Harian yang Fleksibel</h3><p>Contoh rutinitas 45 menit. Ubah jamnya agar sesuai keseharianmu.</p></div></div><div class="schedule"><div class="schedule-row"><span class="time">15 mnt</span><div><strong>Belajar satu konsep</strong><small>Grammar atau pola kalimat. Hindari belajar terlalu banyak konsep sekaligus.</small></div></div><div class="schedule-row"><span class="time">10 mnt</span><div><strong>Latihan aktif</strong><small>Kerjakan soal dan buat contoh sendiri tanpa menyalin.</small></div></div><div class="schedule-row"><span class="time">10 mnt</span><div><strong>Listening / shadowing</strong><small>Gunakan audio singkat sesuai kemampuan. Dengarkan, baca transkrip, lalu tirukan.</small></div></div><div class="schedule-row"><span class="time">10 mnt</span><div><strong>Speaking / writing</strong><small>Jawab pertanyaan, ceritakan pengalaman, atau tulis 5 kalimat.</small></div></div></div><p class="muted-note">Hari sibuk? Lakukan versi minimum 10 menit: 3 menit review, 4 menit listening, 3 menit speaking.</p></section><section class="card"><h3>Checklist belajar hari ini</h3><div id="daily-checks"></div></section></div></section>
+  <section id="page-progress" class="page"><div class="fullpage"><section class="card"><div class="section-head"><div><h3>Dashboard Progress</h3><p>Perbarui checklist saat kamu benar-benar telah mempelajari materi.</p></div><button class="button ghost" id="export-progress">Ekspor progress</button></div><div class="stats" id="progress-stats"></div></section><section class="card"><h3>Progress per tahap</h3><div id="progress-stages"></div></section><section class="card"><h3>Riwayat belajar</h3><div id="history"></div></section></div></section>
+  <section id="page-tests" class="page"><div class="fullpage"><section class="card"><h3>Tes & Evaluasi</h3><p class="muted-note">Gunakan tes singkat ini untuk memeriksa fondasi. Jawab tanpa melihat catatan. Ini bukan tes sertifikasi.</p><form id="quiz"><div class="quiz-q"><strong>1. She ___ English every day.</strong><div class="quiz-opts"><label class="check-row"><input type="radio" name="q1" value="a" required> study</label><label class="check-row"><input type="radio" name="q1" value="b"> studies</label><label class="check-row"><input type="radio" name="q1" value="c"> studying</label></div></div><div class="quiz-q"><strong>2. Yesterday, I ___ to campus.</strong><div class="quiz-opts"><label class="check-row"><input type="radio" name="q2" value="a" required> go</label><label class="check-row"><input type="radio" name="q2" value="b"> went</label><label class="check-row"><input type="radio" name="q2" value="c"> gone</label></div></div><div class="quiz-q"><strong>3. Pilih kalimat yang benar.</strong><div class="quiz-opts"><label class="check-row"><input type="radio" name="q3" value="a" required> I am agree with you.</label><label class="check-row"><input type="radio" name="q3" value="b"> I agree with you.</label><label class="check-row"><input type="radio" name="q3" value="c"> I agreeing with you.</label></div></div><div class="quiz-q"><strong>4. I enjoy ___ English stories.</strong><div class="quiz-opts"><label class="check-row"><input type="radio" name="q4" value="a" required> read</label><label class="check-row"><input type="radio" name="q4" value="b"> to read</label><label class="check-row"><input type="radio" name="q4" value="c"> reading</label></div></div><div class="quiz-q"><strong>5. Buat satu kalimat bahasa Inggris tentang tujuanmu belajar.</strong><div class="quiz-opts"><textarea id="quiz-writing" class="notes-area" aria-label="Jawaban tulis tentang tujuanmu belajar" placeholder="I want to learn English because..." required></textarea></div><button class="button" type="submit">Periksa jawaban</button></form><div id="quiz-result"></div></section></div></section>
+  <section id="page-dictionary" class="page"><div class="fullpage"><section class="card"><h3>Kamus Pribadi</h3><p class="muted-note">Simpan kata dan frasa yang ingin kamu aktifkan dalam speaking.</p><form id="word-form"><input id="word-en" aria-label="Kata atau frasa bahasa Inggris" placeholder="English word / phrase" required><input id="word-id" aria-label="Arti atau contoh" placeholder="Arti / contoh" required><button class="button">Tambah</button></form><div id="word-list"></div></section></div></section>
+  <section id="page-notes" class="page"><div class="fullpage"><section class="card"><h3>Catatan Belajar</h3><p class="muted-note">Catat kesalahan yang sering muncul, kalimat baru, atau hal yang ingin ditanyakan saat sesi berikutnya.</p><textarea id="notes" class="notes-area" placeholder="Hari ini saya belajar...&#10;Kesalahan yang masih sering saya lakukan...&#10;Kalimat yang ingin saya coba gunakan..."></textarea><div class="notes-foot"><small id="notes-status">Catatan disimpan ke database.</small><button class="button" id="save-notes">Simpan catatan</button></div></section></div></section>
+</main>
+</div>
+</div><div class="toast" id="toast"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
