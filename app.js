@@ -565,6 +565,8 @@ function showAuth() {
   setShown($('boot-screen'), false);
   setShown($('auth-view'), true);
   setShown($('app-view'), false);
+  const err = $('login-error');
+  if (err) { err.textContent = ''; err.style.display = 'none'; }
 }
 
 function showApp() {
@@ -607,7 +609,11 @@ function boot() {
     .catch((e) => {
       $('boot-text').textContent = 'Gagal menghubungi Supabase: ' + e.message;
     });
-  db.onAuthStateChange(onAuthEvent);
+  try {
+    db.onAuthStateChange(onAuthEvent);
+  } catch (e) {
+    $('boot-text').textContent = 'Gagal menghubungi Supabase: ' + e.message;
+  }
 }
 
 // ---------- Binding awal (elemen statis) ----------
