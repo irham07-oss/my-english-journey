@@ -32,6 +32,15 @@ main{padding:26px;max-width:1600px;width:100%;margin:auto}.topbar{display:flex;a
 .banner-error p{margin:0}
 .banner-error .button{margin-left:auto}
 .topbar-actions{display:flex;align-items:center;gap:10px}
+.head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.legacy-migrate{max-width:660px;margin:12vh auto;padding:28px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 3px 12px #234d7610}
+.legacy-migrate h1{margin-top:0;font-size:22px}
+.legacy-migrate p{line-height:1.6}
+.legacy-actions{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+.legacy-actions a.button{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.legacy-noscript{text-align:center;margin-top:20vh}
+.legacy-code{background:#f4f8fe;border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow:auto}
+.legacy-code code{font-size:13px}
 
 /* Pindahan inline style statis dari markup asli */
 .focus .eyebrow{color:#3474c2}

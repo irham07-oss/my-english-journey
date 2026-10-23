@@ -15,6 +15,7 @@ Dashboard progres belajar bahasa Inggris. Frontend statis (HTML + CSS + ES modul
 | `supabase-config.js` | URL + anon key project Supabase |
 | `schema.sql` | Tabel, RLS, index, fungsi migrasi |
 | `tests/utils.test.mjs` | Tes helper (`node tests/utils.test.mjs`) |
+| `legacy-export.js` | Penawaran unduh data lama di URL lama |
 | `my_english_journey.html` | Redirect ke `index.html` (link lama tetap jalan) |
 | `backup/` | File asli sebelum refactor |
 
@@ -123,10 +124,12 @@ Boleh pakai GitHub Pages dan Vercel sekaligus; tambahkan kedua URL ke Redirect U
 
 Data lama tersimpan di `localStorage` browser dengan key `englishJourneyState`.
 
-- Saat login pertama, jika tabel Supabase masih kosong, app otomatis memanggil `import_legacy_state`.
-- Jika berhasil, key lama diubah menjadi `englishJourneyState_backup` (tidak dihapus permanen).
-- Jika gagal, data lama tetap ada; cek pesan error dan coba lagi setelah schema benar.
+- Jika aplikasi baru dibuka di **origin yang sama** dengan versi lama (misalnya sama-sama `http://127.0.0.1:8000`), login pertama akan otomatis memindahkan data ke Supabase.
+- Jika origin berbeda (misalnya versi lama dibuka via `file://`, versi baru di GitHub Pages), buka `my_english_journey.html` di browser yang sama. Halaman itu akan menawarkan **Unduh data lama** sebelum redirect.
+- Setelah dapat file JSON, login ke aplikasi baru → halaman **Progress** → **Impor data lama** → pilih file tersebut.
+- Impor hanya jalan jika database Supabase masih kosong. Jika sudah ada data, impor akan dilewati untuk menghindari duplikasi.
 - Tombol **Ekspor progress** mengunduh seluruh data dari Supabase sebagai JSON.
+- Key lama diubah menjadi `englishJourneyState_backup` setelah migrasi otomatis; data lama tidak dihapus paksa.
 
 ## 6. Keamanan
 

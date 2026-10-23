@@ -478,6 +478,29 @@ async function exportProgress() {
   }
 }
 
+async function importProgress(file) {
+  const btn = $('import-progress');
+  btn.disabled = true;
+  try {
+    const legacy = JSON.parse(await file.text());
+    if (!legacy || typeof legacy !== 'object' || Array.isArray(legacy.checks) || !legacy.checks || typeof legacy.checks !== 'object') {
+      throw new Error('File bukan ekspor data lama. Gunakan file JSON dari aplikasi versi lama.');
+    }
+    const ok = await db.importLegacyState(mapLegacyState(legacy));
+    if (ok === true) {
+      notesDirty = false;
+      toast('Data lama berhasil diimpor.');
+      await loadData();
+    } else {
+      toast('Impor dilewati: database sudah berisi data.');
+    }
+  } catch (e) {
+    toast('Gagal impor: ' + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
 // ---------- Muat data / migrasi / hydrate ----------
 function hydrate(s) {
   state = freshState();
@@ -630,6 +653,12 @@ $('save-notes').onclick = saveNotes;
 $('word-form').onsubmit = addWord;
 $('quiz').onsubmit = submitQuiz;
 $('export-progress').onclick = exportProgress;
+$('import-progress').onclick = () => $('import-file').click();
+$('import-file').onchange = async (e) => {
+  const file = e.target.files?.[0];
+  if (file) await importProgress(file);
+  e.target.value = '';
+};
 $('notes').addEventListener('input', () => { notesDirty = true; });
 $('retry-btn').onclick = () => { hideDataError(); loadData(); };
 
