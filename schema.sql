@@ -140,6 +140,9 @@ begin
   -- tolak bila user sudah punya data (hindari duplikasi)
   if exists (select 1 from public.checks where user_id = uid)
      or exists (select 1 from public.words where user_id = uid)
+     or exists (select 1 from public.study_days where user_id = uid)
+     or exists (select 1 from public.history where user_id = uid)
+     or exists (select 1 from public.quiz_results where user_id = uid)
      or exists (select 1 from public.notes where user_id = uid and coalesce(btrim(content), '') <> '') then
     return false;
   end if;
@@ -181,7 +184,9 @@ begin
      and length(payload ->> 'notes') <= 10000 then
     insert into public.notes (user_id, content)
     values (uid, payload ->> 'notes')
-    on conflict do nothing;
+    on conflict (user_id) do update
+      set content = excluded.content, updated_at = now()
+      where coalesce(btrim(notes.content), '') = '';
   end if;
 
   -- history: happened_at dari data lama (fallback now), text maks 250
